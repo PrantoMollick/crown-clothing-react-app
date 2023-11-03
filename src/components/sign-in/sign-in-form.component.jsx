@@ -37,11 +37,24 @@ const SignInForm = () => {
     }
 
     try {
+      setIsLoading(true);
       const res = await signInAuthUserWithEmailAndPassword(email, password);
-
       console.log(res);
       resetFormFields();
-    } catch (error) {}
+      setIsLoading(false);
+    } catch (error) {
+      switch (error.code) {
+        case "auth/wrong-password":
+          alert("incorrect password for email!");
+          break;
+        case "auth/user-not-found":
+          alert("No user associated with this email!");
+          break;
+        default:
+          alert("Something went wrong! Please try again letter!");
+          console.log(error);
+      }
+    }
   };
 
   const handleChange = (e) => {
