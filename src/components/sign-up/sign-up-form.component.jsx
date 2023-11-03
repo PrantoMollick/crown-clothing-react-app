@@ -20,6 +20,10 @@ const SignUpForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { displayName, email, password, confirmPassword } = formFields;
 
+  const resetFormFields = () => {
+    setFormFields(defaultFormFields);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -36,7 +40,7 @@ const SignUpForm = () => {
       );
 
       await createUserDocumentFromAuth(user, { displayName });
-      setFormFields(defaultFormFields);
+      resetFormFields();
       setIsLoading(false);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
