@@ -1,14 +1,17 @@
 import "./navigation.styles.scss";
 
 import { Outlet, Link } from "react-router-dom";
-import { useContext } from "react";
 
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
-import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
+import CartIcon from "../../components/cart-icon/cart-icon.component";
+import { useUser } from "../../hooks/useUser";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+import { useCart } from "../../hooks/useCart";
 
 const Navigation = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useUser();
+  const { isCartOpen } = useCart();
 
   return (
     <>
@@ -30,7 +33,9 @@ const Navigation = () => {
               SIGN IN
             </Link>
           )}
+          <CartIcon />
         </div>
+        {isCartOpen && <CartDropdown />}
       </div>
       <Outlet />
     </>
