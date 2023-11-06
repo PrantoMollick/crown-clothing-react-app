@@ -5,17 +5,22 @@ export const useCart = () => {
   const {
     addItemToCart,
     removeItemFromCart,
+    clearItemFromCart,
     cartItems,
     isCartOpen,
     setIsCartOpen,
-    cartCount
+    cartCount,
+    cartTotal
   } = useContext(CartContext);
+
   return {
     addItemToCart,
     cartItems,
     isCartOpen,
     setIsCartOpen,
     removeItemFromCart,
-    cartCount
+    clearItemFromCart,
+    cartCount,
+    cartTotal
   };
 };

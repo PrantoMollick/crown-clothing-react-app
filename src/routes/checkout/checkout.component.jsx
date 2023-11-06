@@ -4,7 +4,7 @@ import { useCart } from "../../hooks/useCart";
 import "./checkout.styles.scss";
 
 const Checkout = () => {
-  const { cartItems } = useCart();
+  const { cartItems, cartTotal } = useCart();
 
   const rowHeaders = [
     {
@@ -38,7 +38,7 @@ const Checkout = () => {
         <Checkoutitem key={cartItem.id} cartItem={cartItem} />
       ))}
 
-      <span className="total">Total: 0</span>
+      <span className="total">Total: {cartTotal}</span>
     </div>
   );
 };
