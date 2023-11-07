@@ -5,28 +5,23 @@ import { useCategories } from "../../hooks/useCategories";
 import ProductCard from "../../components/product-card/product-card.component";
 
 import "./shop.styles.scss";
+import CategoryPreview from "../../components/category-preview/category-preview.component";
 
 const Shop = () => {
   const { categoriesMap, loading } = useCategories();
 
   return (
-    <>
+    <div className="shop-container">
       <div className={`${loading ? "loader" : ""}`}>
         <ScaleLoader loading={loading} />
       </div>
       {Object.keys(categoriesMap).map((title) => {
+        const products = categoriesMap[title];
         return (
-          <Fragment key={title}>
-            <h2>{title}</h2>
-            <div className="products-container">
-              {categoriesMap[title].map((product) => (
-                <ProductCard key={product.id} product={product}></ProductCard>
-              ))}
-            </div>
-          </Fragment>
+          <CategoryPreview key={title} title={title} products={products} />
         );
       })}
-    </>
+    </div>
   );
 };
 
