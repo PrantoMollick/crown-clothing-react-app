@@ -1,5 +1,3 @@
-import "./navigation.styles.scss";
-
 import { Outlet, Link } from "react-router-dom";
 
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
@@ -9,34 +7,41 @@ import { useUser } from "../../hooks/useUser";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 import { useCart } from "../../hooks/useCart";
 
+import {
+  LogoContainer,
+  NavLink,
+  NavLinkContainer,
+  NavigationContainer
+} from "./navigation.styles";
+
 const Navigation = () => {
   const { currentUser } = useUser();
   const { isCartOpen } = useCart();
 
   return (
     <>
-      <div className="navigation">
-        <Link className="logo-container" to="/">
+      <NavigationContainer>
+        <LogoContainer to="/">
           <CrownLogo className="logo" />
-        </Link>
+        </LogoContainer>
 
-        <div className="nav-links-container">
-          <Link className="nav-link" to="/shop">
+        <NavLinkContainer>
+          <NavLink className="nav-link" to="/shop">
             SHOP
-          </Link>
+          </NavLink>
           {currentUser ? (
             <span className="nav-link" onClick={signOutUser}>
               SIGN OUT
             </span>
           ) : (
-            <Link className="nav-link" to="/auth">
+            <NavLink className="nav-link" to="/auth">
               SIGN IN
-            </Link>
+            </NavLink>
           )}
           <CartIcon />
-        </div>
+        </NavLinkContainer>
         {isCartOpen && <CartDropdown />}
-      </div>
+      </NavigationContainer>
       <Outlet />
     </>
   );
