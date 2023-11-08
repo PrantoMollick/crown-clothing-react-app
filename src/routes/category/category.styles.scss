@@ -1,10 +1,16 @@
+.category-title {
+  font-size: 28px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
 .loader {
   height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.category-products-container {
+.category-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 20px;

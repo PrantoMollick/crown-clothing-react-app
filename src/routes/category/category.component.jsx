@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-
-import "./category.styles.scss";
 import { useCategories } from "../../hooks/useCategories";
 import ProductCard from "../../components/product-card/product-card.component";
 import { ScaleLoader } from "react-spinners";
+
+import "./category.styles.scss";
 
 const Category = () => {
   const { categoriesMap, loading } = useCategories();
@@ -13,11 +13,14 @@ const Category = () => {
 
   if (products.length > 0) {
     return (
-      <div className="category-products-container">
-        {products?.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      <>
+        <h2 className="category-title">{category.toUpperCase()}</h2>
+        <div className="category-container">
+          {products?.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </>
     );
   }
 
