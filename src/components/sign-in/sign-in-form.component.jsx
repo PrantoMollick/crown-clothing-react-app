@@ -8,7 +8,7 @@ import {
   signInWithGooglePopup
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPES_CLASSES } from "../button/button.component";
 
 const defaultFormFields = {
   email: "",
@@ -25,8 +25,7 @@ const SignInForm = () => {
   };
 
   const signInwithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   const handleSubmit = async (e) => {
@@ -92,7 +91,11 @@ const SignInForm = () => {
 
         <div className="buttons-container">
           <Button type="submit">Sign in</Button>
-          <Button buttonType="google" type="button" onClick={signInwithGoogle}>
+          <Button
+            buttonType={BUTTON_TYPES_CLASSES.google}
+            type="button"
+            onClick={signInwithGoogle}
+          >
             Google sign in
           </Button>
         </div>
