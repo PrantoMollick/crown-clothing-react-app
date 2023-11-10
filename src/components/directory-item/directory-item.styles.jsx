@@ -1,11 +1,15 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const BackgroundImage = styled.div`
+const BackgroundImageCss = css`
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
-  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
+`;
+
+export const BackgroundImage = styled.div`
+  ${BackgroundImageCss}
+  background-image: ${({ imageurl }) => `url(${imageurl})`};
 `;
 
 export const Body = styled.div`
