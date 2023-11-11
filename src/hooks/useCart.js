@@ -7,7 +7,7 @@ export const useCart = () => {
     removeItemFromCart,
     clearItemFromCart,
     cartItems,
-    isCartOpen,
+    isOpen,
     setIsCartOpen,
     cartCount,
     cartTotal
@@ -16,7 +16,7 @@ export const useCart = () => {
   return {
     addItemToCart,
     cartItems,
-    isCartOpen,
+    isCartOpen: isOpen,
     setIsCartOpen,
     removeItemFromCart,
     clearItemFromCart,
