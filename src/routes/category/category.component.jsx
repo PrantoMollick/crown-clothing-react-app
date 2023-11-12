@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
-import { useCategories } from "../../hooks/useCategories";
+
 import ProductCard from "../../components/product-card/product-card.component";
 import { ScaleLoader } from "react-spinners";
 
 import "./category.styles.scss";
+import { useSelector } from "react-redux";
+import { selectCategories } from "../../store/categories/categories.selector";
 
 const Category = () => {
-  const { categoriesMap, loading } = useCategories();
+  const { categoriesMap, isLoading } = useSelector(selectCategories);
   const { category } = useParams();
 
   const products = categoriesMap[category.toLowerCase()] || [];
@@ -26,10 +28,10 @@ const Category = () => {
 
   return (
     <>
-      <div className={`${loading ? "loader" : ""}`}>
-        <ScaleLoader loading={loading} />
+      <div className={`${isLoading ? "loader" : ""}`}>
+        <ScaleLoader loading={isLoading} />
       </div>
-      {products.length === 0 && !loading && <div>No Found Any product</div>}
+      {products.length === 0 && !isLoading && <div>No Found Any product</div>}
     </>
   );
 };

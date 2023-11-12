@@ -16,15 +16,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <UserProvider>
-        <CategoriesProvider>
-          <CartProvider>
-            <React.StrictMode>
-              <App />
-            </React.StrictMode>
-          </CartProvider>
-        </CategoriesProvider>
-      </UserProvider>
+      <CartProvider>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </CartProvider>
     </BrowserRouter>
   </Provider>
 );
