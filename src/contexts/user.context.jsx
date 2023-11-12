@@ -5,16 +5,19 @@ import {
 } from "../utils/firebase/firebase.utils";
 import { createAction } from "../utils/reducer/reducer.utils";
 
-export const USER_ACTION_TYPES = {
-  SET_CURRENT_USER: "set_current_user"
-};
-
-//as the actual value you want to access
 export const UserContext = createContext({
   currentUser: null,
   setCurrentUser: () => null
 });
 
+export const USER_ACTION_TYPES = {
+  SET_CURRENT_USER: "set_current_user"
+};
+
+//as the actual value you want to access
+const INITIAL_STATE = {
+  currentUser: null
+};
 const userReducer = (state, action) => {
   const { type, payload } = action;
 
@@ -25,10 +28,6 @@ const userReducer = (state, action) => {
     default:
       throw new Error(`Unhandled type ${type} in userReducer`);
   }
-};
-
-const INITIAL_STATE = {
-  currentUser: null
 };
 
 export const UserProvider = ({ children }) => {
