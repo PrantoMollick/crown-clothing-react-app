@@ -1,7 +1,6 @@
-import { useContext } from "react";
-import { UserContext } from "../contexts/user.context";
+import { useSelector } from "react-redux";
 
 export const useUser = function () {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-  return { currentUser, setCurrentUser };
+  const currentUser = useSelector((state) => state.user.currentUser);
+  return currentUser;
 };

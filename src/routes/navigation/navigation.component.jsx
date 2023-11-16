@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
@@ -13,10 +12,10 @@ import {
   NavLinkContainer,
   NavigationContainer
 } from "./navigation.styles";
-import { selectCurrentUser } from "../../store/user/user.selector";
+import { useUser } from "../../hooks/useUser";
 
 const Navigation = () => {
-  const currentUser = useSelector(selectCurrentUser);
+  const currentUser = useUser();
   const { isCartOpen } = useCart();
 
   return (

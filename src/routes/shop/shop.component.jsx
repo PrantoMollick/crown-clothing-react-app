@@ -8,7 +8,7 @@ import "./shop.styles.scss";
 import { useEffect } from "react";
 import {
   isCategoryLoading,
-  setCategoriesMap
+  setCategories
 } from "../../store/categories/categories.action";
 import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
 
@@ -19,8 +19,9 @@ const Shop = () => {
     const getCategoriesMap = async () => {
       try {
         dispatch(isCategoryLoading());
-        const categoriesMap = await getCategoriesAndDocuments();
-        dispatch(setCategoriesMap(categoriesMap));
+        const categoriesArray = await getCategoriesAndDocuments("categories");
+        console.log(categoriesArray);
+        dispatch(setCategories(categoriesArray));
       } catch (error) {
         console.error(error);
       }

@@ -1,8 +1,13 @@
-import { useContext } from "react";
-import { CategoriesContext } from "../contexts/categories.context";
+import { useSelector } from "react-redux";
 
 export const useCategories = () => {
-  const { categoriesMap, loading } = useContext(CategoriesContext);
+  const { categories, isLoading } = useSelector((state) => state.categories);
 
-  return { categoriesMap, loading };
+  const categoriesMap = categories.reduce((acc, category) => {
+    const { title, items } = category;
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+
+  return { categories: categoriesMap, isLoading };
 };

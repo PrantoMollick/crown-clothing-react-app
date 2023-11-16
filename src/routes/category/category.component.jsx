@@ -4,14 +4,13 @@ import ProductCard from "../../components/product-card/product-card.component";
 import { ScaleLoader } from "react-spinners";
 
 import "./category.styles.scss";
-import { useSelector } from "react-redux";
-import { selectCategories } from "../../store/categories/categories.selector";
+import { useCategories } from "../../hooks/useCategories";
 
 const Category = () => {
-  const { categoriesMap, isLoading } = useSelector(selectCategories);
+  const { isLoading, categories } = useCategories();
   const { category } = useParams();
 
-  const products = categoriesMap[category.toLowerCase()] || [];
+  const products = categories[category.toLowerCase()] || [];
 
   if (products.length > 0) {
     return (
